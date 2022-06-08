@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Crud_CF_Jquery.Models.Product>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<div class="container invisible"
+     style="top:2%; height:80%; position:absolute"
+     id="DivDetailView">
+
+</div>
+
+<div class="container visible" id="DivListView">
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr id="TR_@item.ID">
+                    <partial name="_product" model="@item" />
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+    function ShowDetailForm() {
+        $("#DivDetailView").addClass("visible");
+        $("#DivDetailView").removeClass("invisible");
+
+        $("#DivListView").addClass("invisible");
+        $("#DivListView").removeClass("visible");
+        return;
+    }
+
+    function CloseDetailForm() {
+        $("#DivDetailView").addClass("invisible");
+        $("#DivDetailView").removeClass("visible");
+
+        $("#DivListView").addClass("visible");
+        $("#DivListView").removeClass("invisible");
+        return;
+    }
+</script>

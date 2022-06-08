@@ -1,0 +1,36 @@
+﻿@model Crud_CF_Jquery.Models.Product
+
+    <td>
+        @Html.DisplayFor(modelItem => Model.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.Quantity)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.Price)
+    </td>
+    <td>
+        <div class="btn-group">
+            <a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-sm bg-info m-1">Edit</a>
+            @*<a asp-action="Details" asp-route-id="@Model.ID" class="btn btn-sm bg-primary m-1">Details</a>*@
+
+            <form asp-action="ViewProduct" asp-route-id="@Model.ID"
+                  data-ajax="true"
+                  data-ajax-update="#DivDetailView"
+                  data-ajax-success="ShowDetailForm()">
+                <button type="submit" class="btn btn-sm bg-danger m-1">
+                  Details     
+                </button>
+            </form>
+
+            @*<form asp-action="DeleteProduct" asp-route-id="@Model.ID">
+            <button type="submit" class="btn btn-sm bg-danger m-1"
+              onclick="return confirm('Are you sure to delete this record?')">Delete
+                </button>
+        </form>*@
+        </div>
+    </td>
+<
